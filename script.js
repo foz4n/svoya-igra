@@ -90,6 +90,43 @@ function openQuestion(q, cell) {
     renderMultipleQuestion(q, answers);
 }
 
+function renderMultipleQuestion(q, answersContainer) {
+
+    q.answers.forEach((answer, index) => {
+
+        const div = document.createElement("div");
+
+        div.className = "answer";
+        div.textContent = answer;
+
+        div.onclick = () => {
+
+            if (
+                div.classList.contains("correct") ||
+                div.classList.contains("wrong")
+            ) {
+                return;
+            }
+
+            if (index === q.correct) {
+
+                div.classList.add("correct");
+
+            } else {
+
+                div.classList.add("wrong");
+
+                answersContainer.children[q.correct]
+                    ?.classList.add("correct");
+            }
+
+            markQuestionUsed();
+        };
+
+        answersContainer.appendChild(div);
+    });
+}
+
 /* SCORE */
 function addScore(team, plus) {
 
