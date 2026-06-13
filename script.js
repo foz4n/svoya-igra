@@ -234,3 +234,14 @@ window.addEventListener("beforeunload", (e) => {
 
     e.returnValue = "";
 });
+
+document.getElementById("reset-btn").onclick = () => {
+
+    if (!confirm("Полностью сбросить игру?")) {
+        return;
+    }
+
+    localStorage.clear();
+
+    location.reload();
+};
